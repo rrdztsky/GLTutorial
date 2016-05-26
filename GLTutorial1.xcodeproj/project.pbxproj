@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CC4808EB1CA894FA00B1EBE9 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC4808EA1CA894FA00B1EBE9 /* main.cpp */; };
+		CC4808F31CA895BA00B1EBE9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4808F11CA895BA00B1EBE9 /* GLUT.framework */; };
+		CC4808F41CA895BA00B1EBE9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,8 @@
 /* Begin PBXFileReference section */
 		CC4808E71CA894FA00B1EBE9 /* GLTutorial1 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GLTutorial1; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC4808EA1CA894FA00B1EBE9 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		CC4808F11CA895BA00B1EBE9 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +36,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC4808F31CA895BA00B1EBE9 /* GLUT.framework in Frameworks */,
+				CC4808F41CA895BA00B1EBE9 /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,6 +47,8 @@
 		CC4808DE1CA894FA00B1EBE9 = {
 			isa = PBXGroup;
 			children = (
+				CC4808F11CA895BA00B1EBE9 /* GLUT.framework */,
+				CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */,
 				CC4808E91CA894FA00B1EBE9 /* GLTutorial1 */,
 				CC4808E81CA894FA00B1EBE9 /* Products */,
 			);
@@ -151,10 +159,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -165,6 +170,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Debug;
 		};
@@ -192,6 +198,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "-Wno-deprecated-declarations";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -201,6 +208,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				WARNING_CFLAGS = "-Wno-deprecated-declarations";
 			};
 			name = Release;
 		};
