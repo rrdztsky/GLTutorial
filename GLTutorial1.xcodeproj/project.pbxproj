@@ -245,6 +245,7 @@
 				CC4808F01CA894FA00B1EBE9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
