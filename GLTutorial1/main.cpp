@@ -10,9 +10,12 @@
 #include <OpenGL/gl3.h>
 #define __gl_h_
 #include <GLUT/glut.h>
+#include "Tut1.h"
 
+Tut1 tut;
 void display();
 void reshape(int w, int h);
+
 
 int main(int argc, const char * argv[])
 {
@@ -30,15 +33,12 @@ int main(int argc, const char * argv[])
 // called by GLUT for drawing
 void display()
 {
-	std::cout << "display\n"; // print out to tell us it got called
-	// make some test calls to show that it works
-	glClearColor(1.0f, 0.0f, 0.0f, 1.0f); // colors: red green blue alpha(transparency)0-1, none-full
-	glClear(GL_COLOR_BUFFER_BIT); // clear the main color buffer to set color
+	tut.render();
 	glutSwapBuffers(); // swaps front and back buffers
 }
 
 // called by GLUT when window size changes
 void reshape(int w, int h)
 {
-	std::cout << "reshape " << w  << " " << h << "\n";
+	tut.reshape(w, h);
 }
