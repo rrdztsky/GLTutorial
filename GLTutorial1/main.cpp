@@ -10,12 +10,14 @@
 #include <OpenGL/gl3.h>
 #define __gl_h_
 #include <GLUT/glut.h>
-#include "Tut4.h"
+#include "Tut5.h"
 #include <memory>
+#include <mach/mach_time.h>
 
-std::unique_ptr<Tut4> tut;
+std::unique_ptr<Tut5> tut;
 void display();
 void reshape(int w, int h);
+void idle();
 
 
 int main(int argc, const char * argv[])
@@ -27,10 +29,10 @@ int main(int argc, const char * argv[])
 	glutCreateWindow("rachel"); // create window and name it
 	glutDisplayFunc(display); // give GLUT a pointer to my display callback function
 	glutReshapeFunc(reshape); // give GLUT a pointer to my reshape callback function
-	tut.reset(new Tut4); //new makes a thing in dynamic memory
+	tut.reset(new Tut5); //new makes a thing in dynamic memory
 	std::cout << "hello\n";
+	glutIdleFunc(idle);
 	glutMainLoop(); // enter the GLUT loop never to return, everything happens via callbacks (typical for graphics)
-	
 }
 
 // called by GLUT for drawing
@@ -44,4 +46,13 @@ void display()
 void reshape(int w, int h)
 {
 	tut->reshape(w, h);
+}
+
+void idle()
+{
+	static auto ta = mach_absolute_time(); //will only run the first time, ta initialized
+	auto tb = mach_absolute_time();
+	double dt = (double)(tb - ta)*1.0e-9;
+	tut->tick((float)dt);
+	ta = tb;
 }

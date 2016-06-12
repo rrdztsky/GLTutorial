@@ -14,6 +14,7 @@
 		CC636CC71D04CA5F00AD10D8 /* Tut2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */; };
 		CC94E4571D0DFAAC0017CAF8 /* Tut3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E4561D0DFAAC0017CAF8 /* Tut3.cpp */; };
 		CC94E45A1D0DFECE0017CAF8 /* Tut4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E4591D0DFECE0017CAF8 /* Tut4.cpp */; };
+		CC94E45D1D0E04530017CAF8 /* Tut5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E45C1D0E04530017CAF8 /* Tut5.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,6 +43,8 @@
 		CC94E4561D0DFAAC0017CAF8 /* Tut3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut3.cpp; sourceTree = "<group>"; };
 		CC94E4581D0DFEBC0017CAF8 /* Tut4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tut4.h; sourceTree = "<group>"; };
 		CC94E4591D0DFECE0017CAF8 /* Tut4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut4.cpp; sourceTree = "<group>"; };
+		CC94E45B1D0E04440017CAF8 /* Tut5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tut5.h; sourceTree = "<group>"; };
+		CC94E45C1D0E04530017CAF8 /* Tut5.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut5.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +88,8 @@
 				CC94E4561D0DFAAC0017CAF8 /* Tut3.cpp */,
 				CC94E4581D0DFEBC0017CAF8 /* Tut4.h */,
 				CC94E4591D0DFECE0017CAF8 /* Tut4.cpp */,
+				CC94E45B1D0E04440017CAF8 /* Tut5.h */,
+				CC94E45C1D0E04530017CAF8 /* Tut5.cpp */,
 				CC636CC61D04CA5F00AD10D8 /* Tut2.h */,
 				CC636CC21D04C20B00AD10D8 /* Tut1.h */,
 				CC636CC31D04C2E600AD10D8 /* Tut1.cpp */,
@@ -151,6 +156,7 @@
 				CC636CC71D04CA5F00AD10D8 /* Tut2.cpp in Sources */,
 				CC94E4571D0DFAAC0017CAF8 /* Tut3.cpp in Sources */,
 				CC4808EB1CA894FA00B1EBE9 /* main.cpp in Sources */,
+				CC94E45D1D0E04530017CAF8 /* Tut5.cpp in Sources */,
 				CC636CC41D04C2E600AD10D8 /* Tut1.cpp in Sources */,
 				CC94E45A1D0DFECE0017CAF8 /* Tut4.cpp in Sources */,
 			);
