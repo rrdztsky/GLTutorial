@@ -11,6 +11,7 @@
 		CC4808F31CA895BA00B1EBE9 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4808F11CA895BA00B1EBE9 /* GLUT.framework */; };
 		CC4808F41CA895BA00B1EBE9 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */; };
 		CC636CC41D04C2E600AD10D8 /* Tut1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC636CC31D04C2E600AD10D8 /* Tut1.cpp */; };
+		CC636CC71D04CA5F00AD10D8 /* Tut2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,6 +33,9 @@
 		CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		CC636CC21D04C20B00AD10D8 /* Tut1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tut1.h; sourceTree = "<group>"; };
 		CC636CC31D04C2E600AD10D8 /* Tut1.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut1.cpp; sourceTree = "<group>"; };
+		CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut2.cpp; sourceTree = "<group>"; };
+		CC636CC61D04CA5F00AD10D8 /* Tut2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tut2.h; sourceTree = "<group>"; };
+		CC636CC81D04CC5500AD10D8 /* Vec3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				CC4808EA1CA894FA00B1EBE9 /* main.cpp */,
+				CC636CC81D04CC5500AD10D8 /* Vec3.h */,
+				CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */,
+				CC636CC61D04CA5F00AD10D8 /* Tut2.h */,
 				CC636CC21D04C20B00AD10D8 /* Tut1.h */,
 				CC636CC31D04C2E600AD10D8 /* Tut1.cpp */,
 			);
@@ -131,6 +138,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC636CC71D04CA5F00AD10D8 /* Tut2.cpp in Sources */,
 				CC4808EB1CA894FA00B1EBE9 /* main.cpp in Sources */,
 				CC636CC41D04C2E600AD10D8 /* Tut1.cpp in Sources */,
 			);

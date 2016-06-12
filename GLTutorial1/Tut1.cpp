@@ -13,8 +13,7 @@
 #include <GLUT/glut.h>
 
 Tut1::Tut1()
-{
-	
+{	
 }
 
 void Tut1::render()

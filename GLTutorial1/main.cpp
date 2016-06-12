@@ -10,9 +10,10 @@
 #include <OpenGL/gl3.h>
 #define __gl_h_
 #include <GLUT/glut.h>
-#include "Tut1.h"
+#include "Tut2.h"
+#include <memory>
 
-Tut1 tut;
+std::unique_ptr<Tut2> tut2;
 void display();
 void reshape(int w, int h);
 
@@ -26,19 +27,21 @@ int main(int argc, const char * argv[])
 	glutCreateWindow("rachel"); // create window and name it
 	glutDisplayFunc(display); // give GLUT a pointer to my display callback function
 	glutReshapeFunc(reshape); // give GLUT a pointer to my reshape callback function
-	glutMainLoop(); // enter the GLUT loop never to return, everything happens via callbacks (typical for graphics)
+	tut2.reset(new Tut2); //new makes a thing in dynamic memory
 	std::cout << "hello\n";
+	glutMainLoop(); // enter the GLUT loop never to return, everything happens via callbacks (typical for graphics)
+	
 }
 
 // called by GLUT for drawing
 void display()
 {
-	tut.render();
+	tut2->render();
 	glutSwapBuffers(); // swaps front and back buffers
 }
 
 // called by GLUT when window size changes
 void reshape(int w, int h)
 {
-	tut.reshape(w, h);
+	tut2->reshape(w, h);
 }
