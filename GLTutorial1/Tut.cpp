@@ -20,8 +20,8 @@ Tut::Tut()
 : time(0.0f) //initializer list
 {
 	verts.emplace_back(-1.0f, -1.0f, 0.0f); //template thingies forward arguments
-	verts.emplace_back(1.0f, -1.0, 0.0f);
-	verts.emplace_back(0.0f, 1.0, 0.0f);
+	verts.emplace_back(1.0f, -1.0f, 0.0f);
+	verts.emplace_back(0.0f, 1.0f, 0.0f);
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glGenBuffers(1, &vbo); //generate buffers at address of vbo (pointer)
@@ -106,11 +106,13 @@ void Tut::render()
 	glValidateProgram(shaderProgram);
 	glUseProgram(shaderProgram);
 	
-	Matrix4x4 world;
-	world.m[0][0] = 1.0f; world.m[0][1] = 0.0f; world.m[0][2] = 0.0f; world.m[0][3] = (0.5f)*std::cos(2.0f*time);
-	world.m[1][0] = 0.0f; world.m[1][1] = 1.0f; world.m[1][2] = 0.0f; world.m[1][3] = (0.5f)*std::sin(2.0f*time);
-	world.m[2][0] = 0.0f; world.m[2][1] = 0.0f; world.m[2][2] = 1.0f; world.m[2][3] = 0.0f;
-	world.m[3][0] = 0.0f; world.m[3][1] = 0.0f; world.m[3][2] = 0.0f; world.m[3][3] = 1.0f;
+	const float scale = 0.2f;
+	const float radius = 0.5f;
+	
+	Matrix4x4 r = rotateZMatrix(time);
+	Matrix4x4 s = scaleMatrix(scale);
+	Matrix4x4 t = transMatrix(radius*std::cos(time), radius*std::sin(time), 0.0f);
+	Matrix4x4 world = t*r*s;
 	glUniformMatrix4fv(worldLocation, 1, GL_TRUE, &world.m[0][0]);
 	
 	float color = 0.5f*(std::sin(2.0*time) + 1.0); //creates a variable to oscillate color between red and white
