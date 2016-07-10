@@ -26,10 +26,11 @@ private:
 	GLuint vbo;
 	GLuint vao;
 	GLuint shaderProgram;
+	GLuint ibo;
 	GLint worldLocation;
-	GLint colorLocation;
 	float time;
 	std::vector<Vec3> verts;
+	std::vector<unsigned int> indices;
 };
 
 

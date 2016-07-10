@@ -18,15 +18,21 @@
 
 Tut::Tut()
 : time(0.0f) //initializer list
+, indices{0, 1, 2, 0, 2, 3, 1, 3, 2, 1, 0, 3}
 {
-	verts.emplace_back(-1.0f, -1.0f, 0.0f); //template thingies forward arguments
-	verts.emplace_back(1.0f, -1.0f, 0.0f);
+	verts.emplace_back(0.0f, 0.0f, 1.0f); //template thingies forward arguments
+	verts.emplace_back(1.0f, 0.0f, 0.0f);
 	verts.emplace_back(0.0f, 1.0f, 0.0f);
+	verts.emplace_back(-1.0f, 0.0f, 0.0f);
 	glGenVertexArrays(1, &vao);
 	glBindVertexArray(vao);
 	glGenBuffers(1, &vbo); //generate buffers at address of vbo (pointer)
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, 3.0*sizeof(Vec3), &verts[0], GL_STATIC_DRAW); //sends OpenGL the three floats.
+	glBufferData(GL_ARRAY_BUFFER, verts.size()*sizeof(Vec3), &verts[0], GL_STATIC_DRAW); //sends OpenGL the number of verts.
+	
+	glGenBuffers(1, &ibo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo); //this is the array buffer
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.size()*sizeof(unsigned int), &indices[0], GL_STATIC_DRAW);
 	
 	shaderProgram = glCreateProgram();
 	GLuint vs = glCreateShader(GL_VERTEX_SHADER);
@@ -39,7 +45,7 @@ Tut::Tut()
 	void main()
 	{
 		gl_Position = world*vec4(Position, 1.0); // 4x4 matrix times a 4x1 vector
-		color = vec4(clamp(Position, 0.0, 1.0), 1.0); //prevents colors from exceeding 0-1
+		color = vec4(clamp(0.5*(Position + 1.0), 0.0, 1.0), 1.0); //prevents colors from exceeding 0-1
 	}
 	)";
 	const GLchar *p[1] = {(const GLchar *) vsText}; //array of pointers, one of them, one char cast as a GLchar
@@ -94,8 +100,7 @@ Tut::Tut()
 	}
 	
 	worldLocation = glGetUniformLocation(shaderProgram, "world"); //tell us the integer id for the location of the scale variable in OpenGL
-	colorLocation = glGetUniformLocation(shaderProgram, "gColor");
-	
+		
 }
 
 void Tut::render()
@@ -107,6 +112,9 @@ void Tut::render()
 	glClear(GL_COLOR_BUFFER_BIT); // clear the main color buffer to set color
 	glValidateProgram(shaderProgram);
 	glUseProgram(shaderProgram);
+	glEnable(GL_DEPTH_TEST); //enable the depth/z buffer
+	glClear(GL_DEPTH_BUFFER_BIT); //clear the depth buffer
+	
 	
 	const float scale = 0.2f;
 	const float radius = 0.5f;
@@ -116,13 +124,11 @@ void Tut::render()
 	Matrix4x4 world = t*r*s;
 	glUniformMatrix4fv(worldLocation, 1, GL_TRUE, &world.m[0][0]);
 	
-	float color = 0.5f*(std::sin(2.0*time) + 1.0); //creates a variable to oscillate color between red and white
-	glUniform1f(colorLocation, color); //updates gColor
-	
 	glEnableVertexAttribArray(0); //enable the first slot
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0); //for the bound buffer and attribArray, here is what you're getting: three at a time, they're floats, don't normalize them, tightly packed (stride is zero), first one is at zero(beginning)
-	glDrawArrays(GL_TRIANGLES, 0, 3); //draw points, start at index zero, draw primitives
+	glDrawElements(GL_TRIANGLES, sizeof(indices), GL_UNSIGNED_INT, 0);
 	glDisableVertexAttribArray(0); //shuts down the attrib array
 	glBindVertexArray(0);
 }
