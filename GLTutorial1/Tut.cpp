@@ -33,11 +33,13 @@ Tut::Tut()
 	const char *vsText =
 	R"(
 #version 150
-	in vec3 Position;
+	in vec3 Position; //from vertex buffer
 	uniform mat4 world; //vec3, mat4, vec4 are already part of the shader language. built in.
+	out vec4 color; //put out color in addition to glposition, interpolate
 	void main()
 	{
 		gl_Position = world*vec4(Position, 1.0); // 4x4 matrix times a 4x1 vector
+		color = vec4(clamp(Position, 0.0, 1.0), 1.0); //prevents colors from exceeding 0-1
 	}
 	)";
 	const GLchar *p[1] = {(const GLchar *) vsText}; //array of pointers, one of them, one char cast as a GLchar
@@ -60,11 +62,11 @@ Tut::Tut()
 	const char *fsText =
 	R"(
 #version 150
+	in vec4 color;
 	out vec4 FragColor;
-	uniform float gColor;
 	void main()
 	{
-		FragColor = vec4(1.0, gColor, gColor, 1.0); //output a vec4 called FragColor, make whatever pixels it has whatever color I say
+		FragColor = color; //send through whatever color we got
 	}
 	)";
 	const GLchar *fp[1] = {(const GLchar *) fsText}; //array of pointers, one of them, one char cast as a GLchar
@@ -108,7 +110,6 @@ void Tut::render()
 	
 	const float scale = 0.2f;
 	const float radius = 0.5f;
-	
 	Matrix4x4 r = rotateZMatrix(time);
 	Matrix4x4 s = scaleMatrix(scale);
 	Matrix4x4 t = transMatrix(radius*std::cos(time), radius*std::sin(time), 0.0f);
