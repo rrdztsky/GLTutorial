@@ -14,7 +14,22 @@
 class Matrix4x4
 {
 public:
-	float m[4][4];
+	Matrix4x4(); //Default constructor
+	Matrix4x4(
+				float xx, float xy, float xz, float xw,
+			 	float yx, float yy, float yz, float yw,
+			  	float zx, float zy, float zz, float zw,
+			  	float wx, float wy, float wz, float ww
+			  );
+	float &operator()(int i, int j) { return m[(4*i) + j]; } //overloads () operator for referencing
+									 						 //and indexing matrix location
+	const float &operator()(int i, int j) const { return m[(4*i) + j]; }
+	
+	float *get() { return &m[0]; } //returns address of the first element of m
+	const float *get() const { return &m[0]; }
+	
+private:
+	float m[16];
 };
 
 inline Matrix4x4 operator*(const Matrix4x4 &a, const Matrix4x4 &b)
@@ -24,10 +39,10 @@ inline Matrix4x4 operator*(const Matrix4x4 &a, const Matrix4x4 &b)
 	{
 		for (int j = 0; j < 4; ++j) //looping over columns of result
 		{
-			r.m[i][j] = 0.0f;
+			r(i,j) = 0.0f;
 			for (int k = 0; k < 4; ++k)
 				{
-					r.m[i][j] += a.m[i][k]*b.m[k][j];
+					r(i,j) += a(i,k)*b(k,j);
 				}
 		}
 	}
@@ -36,12 +51,10 @@ inline Matrix4x4 operator*(const Matrix4x4 &a, const Matrix4x4 &b)
 
 inline Matrix4x4 scaleMatrix(float scaleX, float scaleY, float scaleZ)
 {
-	Matrix4x4 r;
-	r.m[0][0] = scaleX; r.m[0][1] = 0.0f; r.m[0][2] = 0.0f; r.m[0][3] = 0.0f;
-	r.m[1][0] = 0.0f; r.m[1][1] = scaleY; r.m[1][2] = 0.0f; r.m[1][3] = 0.0f;
-	r.m[2][0] = 0.0f; r.m[2][1] = 0.0f; r.m[2][2] = scaleZ; r.m[2][3] = 0.0f;
-	r.m[3][0] = 0.0f; r.m[3][1] = 0.0f; r.m[3][2] = 0.0f; r.m[3][3] = 1.0f;
-	return r;
+	return Matrix4x4 ( scaleX, 0.0f, 0.0f, 0.0f,
+					   0.0f, scaleY, 0.0f, 0.0f,
+					   0.0f, 0.0f, scaleZ, 0.0f,
+					   0.0f, 0.0f, 0.0f, 1.0f );
 }
 
 inline Matrix4x4 rotateZMatrix(float angle)
