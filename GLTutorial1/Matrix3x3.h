@@ -29,6 +29,8 @@ public:
 	static Matrix3x3 outerProduct(const Vec3 &a, const Vec3 &b); //multiply all elements, arrayed into a matrix
 	static Matrix3x3 rotation(float angle, const Vec3 &axis); //creates a rotation matrix of an angle about an axis
 	static Matrix3x3 inverseRotation(float angle, const Vec3 &axis); //rotates the opposite way
+	static Matrix3x3 scale(float s); //scales by one scalar
+	static Matrix3x3 scale(const Vec3 &s); //scales by a vector (nonuniform scaling)
 	static Matrix3x3 transpose(const Matrix3x3 &m); //transposes m
 	static Matrix3x3 orthoNormalize(const Matrix3x3 &m); //returns orthonormalized matrix
 	
@@ -100,7 +102,7 @@ inline Matrix3x3 Matrix3x3::zero() //creates a zero matrix
 					 );
 }
 
-inline Matrix3x3 Matrix3x3::identity()
+inline Matrix3x3 Matrix3x3::identity() //creates an identity matrix
 {
 	return Matrix3x3(1.0f, 0.0f, 0.0f,
 					 0.0f, 1.0f, 0.0f,
@@ -120,7 +122,7 @@ inline Matrix3x3 Matrix3x3::skew(const Vec3 &u) //creates cross product
 	return s;
 }
 
-inline Matrix3x3 Matrix3x3::outerProduct(const Vec3 &a, const Vec3 &b)
+inline Matrix3x3 Matrix3x3::outerProduct(const Vec3 &a, const Vec3 &b) //tensors
 {
 	return Matrix3x3(a.x*b.x, a.x*b.y, a.x*b.z,
 					 a.y*b.x, a.y*b.y, a.y*b.z,
@@ -128,58 +130,52 @@ inline Matrix3x3 Matrix3x3::outerProduct(const Vec3 &a, const Vec3 &b)
 					 );
 }
 
-inline Matrix3x3 Matrix3x3::rotation(float angle, const Vec3&axis)
+inline Matrix3x3 Matrix3x3::rotation(float angle, const Vec3 &axis)
 {
 	Matrix3x3 w = Matrix3x3::skew(axis);
-	Matrix3x3 uut = Matrix3x3::outerProduct(axis, axis);
+	Matrix3x3 uu = Matrix3x3::outerProduct(axis, axis);
 	Matrix3x3 I = Matrix3x3::identity();
-	Matrix3x3 M = uut + std::cos(angle)*(I - uut) + std::sin(angle)*w;
+	Matrix3x3 M = uu + std::cos(angle)*(I - uu) + std::sin(angle)*w;
 	return M;
 }
 
-inline Matrix4x4 scaleMatrix(float scaleX, float scaleY, float scaleZ)
+inline Matrix3x3 Matrix3x3::inverseRotation(float angle, const Vec3 &axis)
 {
-	return Matrix4x4 (scaleX, 0.0f, 0.0f, 0.0f,
-					  0.0f, scaleY, 0.0f, 0.0f,
-					  0.0f, 0.0f, scaleZ, 0.0f,
-					  0.0f, 0.0f, 0.0f, 1.0f );
+	return Matrix3x3::rotation(-angle, axis);
 }
 
-inline Matrix4x4 rotateZMatrix(float angle)
+inline Matrix3x3 Matrix3x3::scale(float s)
 {
-	Matrix4x4 r;
-	float c = std::cos(angle);
-	float s = std::sin(angle);
-	r.m[0][0] = c; r.m[0][1] = -s; r.m[0][2] = 0.0f; r.m[0][3] = 0.0f;
-	r.m[1][0] = s; r.m[1][1] = c; r.m[1][2] = 0.0f; r.m[1][3] = 0.0f;
-	r.m[2][0] = 0.0f; r.m[2][1] = 0.0f; r.m[2][2] = 1.0f; r.m[2][3] = 0.0f;
-	r.m[3][0] = 0.0f; r.m[3][1] = 0.0f; r.m[3][2] = 0.0f; r.m[3][3] = 1.0f;
-	return r;
+	return Matrix3x3(s, 0.0f, 0.0f,
+					 0.0f, s, 0.0f,
+					 0.0f, 0.0f, s);
 }
 
-inline Matrix4x4 transMatrix(float transX, float transY, float transZ)
+inline Matrix3x3 Matrix3x3::scale(const Vec3 &s)
 {
-	Matrix4x4 r;
-	r.m[0][0] = 1.0f; r.m[0][1] = 0.0f; r.m[0][2] = 0.0f; r.m[0][3] = transX;
-	r.m[1][0] = 0.0f; r.m[1][1] = 1.0f; r.m[1][2] = 0.0f; r.m[1][3] = transY;
-	r.m[2][0] = 0.0f; r.m[2][1] = 0.0f; r.m[2][2] = 1.0f; r.m[2][3] = transZ;
-	r.m[3][0] = 0.0f; r.m[3][1] = 0.0f; r.m[3][2] = 0.0f; r.m[3][3] = 1.0f;
-	return r;
+	return Matrix3x3(s.x, 0.0f, 0.0f,
+					 0.0f, s.y, 0.0f,
+					 0.0f, 0.0f, s.z);
 }
 
-inline Matrix4x4 transMatrix(const Vec3 &T)
+inline Matrix3x3 Matrix3x3::transpose(const Matrix3x3 &m)
 {
-	return transMatrix(T.x, T.y, T.z);
+	return Matrix3x3(m(0,0), m(1,0), m(2,0),
+					 m(0,1), m(1,1), m(2,1),
+					 m(0,2), m(1,2), m(2,2));
 }
 
-inline Matrix4x4 scaleMatrix(const Vec3 &S)
+inline Matrix3x3 Matrix3x3::orthoNormalize(const Matrix3x3 &m) //given orthonormalized matrix, removes fuzz, returns precise version
 {
-	return scaleMatrix(S.x, S.y, S.z);
-}
-
-inline Matrix4x4 scaleMatrix(float S)
-{
-	return scaleMatrix(S, S, S);
+	Vec3 x(m(0,0), m(1,0), m(2,0));
+	Vec3 y(m(0,1), m(1,1), m(2,1));
+	Vec3 z(m(0,2), m(1,2), m(2,2));
+	y = normalize(y);
+	z = normalize(z);
+	x = normalize(cross(y,z));
+	return Matrix3x3(x.x, y.x, z.x,
+					 x.y, y.y, z.y,
+					 x.z, y.z, z.z);
 }
 
 #endif /* Matrix3x3_h */
