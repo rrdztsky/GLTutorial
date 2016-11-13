@@ -165,14 +165,14 @@ inline Matrix3x3 Matrix3x3::transpose(const Matrix3x3 &m)
 					 m(0,2), m(1,2), m(2,2));
 }
 
-inline Matrix3x3 Matrix3x3::orthoNormalize(const Matrix3x3 &m) //given orthonormalized matrix, removes fuzz, returns precise version
+inline Matrix3x3 Matrix3x3::orthoNormalize(const Matrix3x3 &m) //given orthonormalized matrix, removes fuzz, returns precise version, works on things that do NOT contain scale
 {
-	Vec3 x(m(0,0), m(1,0), m(2,0));
-	Vec3 y(m(0,1), m(1,1), m(2,1));
-	Vec3 z(m(0,2), m(1,2), m(2,2));
-	y = normalize(y);
-	z = normalize(z);
+	Vec3 x(m(0,0), m(1,0), m(2,0)); //object's local x axis
+	Vec3 y(m(0,1), m(1,1), m(2,1)); //object's local y axis
+	Vec3 z(m(0,2), m(1,2), m(2,2)); //object's local z axis
+	y = normalize(y); //normalize into unit length
 	x = normalize(cross(y,z));
+	z = normalize(cross(x,z)); //x,y,z all unit length and perpendicular
 	return Matrix3x3(x.x, y.x, z.x,
 					 x.y, y.y, z.y,
 					 x.z, y.z, z.z);

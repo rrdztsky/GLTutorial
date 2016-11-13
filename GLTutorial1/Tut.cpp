@@ -118,11 +118,11 @@ void Tut::render()
 	
 	const float scale = 0.2f;
 	const float radius = 0.5f;
-	Matrix4x4 r = rotateZMatrix(time);
-	Matrix4x4 s = scaleMatrix(scale);
-	Matrix4x4 t = transMatrix(radius*std::cos(time), radius*std::sin(time), 0.0f);
+	Matrix4x4 r = Matrix4x4::rotation(time, Vec3(0.0f, 1.0f, 0.0f)); //changes the axis of rotation
+	Matrix4x4 s = Matrix4x4::scale(scale);
+	Matrix4x4 t = Matrix4x4::translation(Vec3(radius*std::cos(time), radius*std::sin(time), 0.0f));
 	Matrix4x4 world = t*r*s;
-	glUniformMatrix4fv(worldLocation, 1, GL_TRUE, &world.m[0][0]);
+	glUniformMatrix4fv(worldLocation, 1, GL_TRUE, world.get());
 	
 	glEnableVertexAttribArray(0); //enable the first slot
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
