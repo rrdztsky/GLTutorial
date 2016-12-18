@@ -18,6 +18,10 @@ std::unique_ptr<Tut> tut;
 void display();
 void reshape(int w, int h);
 void idle();
+void keyboard(unsigned char key, int x, int y);
+void keyboardUp(unsigned char key, int x, int y);
+void motion(int x, int y);
+void mouse(int button, int state, int x, int y);
 
 
 int main(int argc, const char * argv[])
@@ -29,6 +33,10 @@ int main(int argc, const char * argv[])
 	glutCreateWindow("rachel"); // create window and name it
 	glutDisplayFunc(display); // give GLUT a pointer to my display callback function
 	glutReshapeFunc(reshape); // give GLUT a pointer to my reshape callback function
+	glutKeyboardFunc(keyboard);
+	glutKeyboardUpFunc(keyboardUp);
+	glutMotionFunc(motion);
+	glutMouseFunc(mouse);
 	tut.reset(new Tut); //new makes a thing in dynamic memory
 	std::cout << "hello\n";
 	glutIdleFunc(idle);
@@ -55,4 +63,54 @@ void idle()
 	double dt = (double)(tb - ta)*1.0e-9;
 	tut->tick((float)dt);
 	ta = tb;
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+	std::cout << key << " down\n";
+	switch (key)
+	{
+		case 'q':
+			
+			break;
+		default:
+			break;
+	}
+}
+
+void keyboardUp(unsigned char key, int x, int y)
+{
+	std::cout << key << " up\n";
+	switch (key)
+	{
+		case 'q':
+			break;
+		default:
+			break;
+	}
+}
+
+void motion(int x, int y)
+{
+	std::cout << x << " " << y << "\n";
+	glutWarpPointer(300, 300);
+}
+
+void mouse(int button, int state, int x, int y)
+{
+	switch (button)
+	{
+		case GLUT_RIGHT_BUTTON:
+			if (state == GLUT_DOWN)
+			{
+				glutSetCursor(GLUT_CURSOR_NONE);
+				glutWarpPointer(300, 300);
+				std::cout << "right mouse button down\n";
+			}
+			else if (state == GLUT_UP)
+			{
+				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+				std::cout << "right mouse button up\n";
+			}
+	}
 }

@@ -9,7 +9,7 @@
 #ifndef Quat_h
 #define Quat_h
 #include "Vec3.h"
-#inlcude "Matrix4x4.h"
+#include "Matrix4x4.h"
 
 class Quat
 {

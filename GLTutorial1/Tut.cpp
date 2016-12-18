@@ -105,7 +105,7 @@ Tut::Tut()
 
 void Tut::render()
 {
-	std::cout << "display\n"; // print out to tell us it got called
+	//std::cout << "display\n"; // print out to tell us it got called
 	glBindVertexArray(vao);
 	// make some test calls to show that it works
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // colors: red green blue alpha(transparency)0-1, none-full
@@ -135,12 +135,12 @@ void Tut::render()
 
 void Tut::reshape(int w, int h)
 {
-	std::cout << "reshape " << w  << " " << h << "\n";
+	//std::cout << "reshape " << w  << " " << h << "\n";
 }
 
 void Tut::tick(float dt)
 {
-	std::cout << "tick " << dt << "\n";
+	//std::cout << "tick " << dt << "\n";
 	time += dt;
 	glutPostRedisplay();
 }
