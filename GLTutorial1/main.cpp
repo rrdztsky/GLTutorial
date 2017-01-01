@@ -67,50 +67,20 @@ void idle()
 
 void keyboard(unsigned char key, int x, int y)
 {
-	std::cout << key << " down\n";
-	switch (key)
-	{
-		case 'q':
-			
-			break;
-		default:
-			break;
-	}
+	tut->keyboard(key, x, y);
 }
 
 void keyboardUp(unsigned char key, int x, int y)
 {
-	std::cout << key << " up\n";
-	switch (key)
-	{
-		case 'q':
-			break;
-		default:
-			break;
-	}
+	tut->keyboardUp(key, x, y);
 }
 
 void motion(int x, int y)
 {
-	std::cout << x << " " << y << "\n";
-	glutWarpPointer(300, 300);
+	tut->motion(x, y);
 }
 
 void mouse(int button, int state, int x, int y)
 {
-	switch (button)
-	{
-		case GLUT_RIGHT_BUTTON:
-			if (state == GLUT_DOWN)
-			{
-				glutSetCursor(GLUT_CURSOR_NONE);
-				glutWarpPointer(300, 300);
-				std::cout << "right mouse button down\n";
-			}
-			else if (state == GLUT_UP)
-			{
-				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-				std::cout << "right mouse button up\n";
-			}
-	}
+	tut->mouse(button, state, x, y);
 }

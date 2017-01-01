@@ -23,6 +23,11 @@ inline Vec3 operator+(const Vec3 &a, const Vec3 &b) //reference to a and b, will
 	return Vec3(a.x + b.x, a.y + b.y, a.z + b.z); //return sum of two vectors
 }
 
+inline Vec3 operator-(const Vec3 &a)
+{
+	return Vec3(-a.x, -a.y, -a.z); 
+}
+
 inline Vec3 operator-(const Vec3 &a, const Vec3 &b) //reference to a and b, will not change
 {
 	return Vec3(a.x - b.x, a.y - b.y, a.z - b.z); //return subtraction of two vectors

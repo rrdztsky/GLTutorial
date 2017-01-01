@@ -19,6 +19,7 @@
 		CCA7E8361D736AC700E3E657 /* Matrix3x3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCA7E8351D736AC700E3E657 /* Matrix3x3.cpp */; };
 		CCD236FD1D1714910038459F /* Tut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCD236FC1D1714910038459F /* Tut.cpp */; };
 		CCD237001D1715980038459F /* Matrix4x4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCD236FF1D1715980038459F /* Matrix4x4.cpp */; };
+		CCF78DC61E187FE10041EA8A /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CCF78DC51E187FE10041EA8A /* Camera.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,6 +58,8 @@
 		CCD236FC1D1714910038459F /* Tut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut.cpp; sourceTree = "<group>"; };
 		CCD236FE1D1715850038459F /* Matrix4x4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Matrix4x4.h; sourceTree = "<group>"; };
 		CCD236FF1D1715980038459F /* Matrix4x4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4x4.cpp; sourceTree = "<group>"; };
+		CCF78DC41E187FC90041EA8A /* Camera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Camera.h; sourceTree = "<group>"; };
+		CCF78DC51E187FE10041EA8A /* Camera.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				CC4808EA1CA894FA00B1EBE9 /* main.cpp */,
+				CCF78DC41E187FC90041EA8A /* Camera.h */,
+				CCF78DC51E187FE10041EA8A /* Camera.cpp */,
 				CC636CC81D04CC5500AD10D8 /* Vec3.h */,
 				CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */,
 				CC94E4551D0DFA940017CAF8 /* Tut3.h */,
@@ -177,6 +182,7 @@
 				CC94E4571D0DFAAC0017CAF8 /* Tut3.cpp in Sources */,
 				CCA7E8361D736AC700E3E657 /* Matrix3x3.cpp in Sources */,
 				CC4808EB1CA894FA00B1EBE9 /* main.cpp in Sources */,
+				CCF78DC61E187FE10041EA8A /* Camera.cpp in Sources */,
 				CC5BA4191DD926F40025CCFB /* Quat.cpp in Sources */,
 				CCD237001D1715980038459F /* Matrix4x4.cpp in Sources */,
 				CC94E45D1D0E04530017CAF8 /* Tut5.cpp in Sources */,

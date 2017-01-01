@@ -13,6 +13,7 @@
 #include <GLUT/glut.h>
 #include <vector>
 #include "Vec3.h"
+#include "Camera.h"
 
 
 class Tut
@@ -21,6 +22,10 @@ public:
 	Tut();
 	void render();
 	void reshape(int w, int h);
+	void keyboard(unsigned char key, int x, int y);
+	void keyboardUp(unsigned char key, int x, int y);
+	void motion(int x, int y);
+	void mouse(int button, int state, int x, int y);
 	void tick(float dt);
 private:
 	GLuint vbo;
@@ -31,6 +36,7 @@ private:
 	float time;
 	std::vector<Vec3> verts;
 	std::vector<unsigned int> indices;
+	Camera camera;
 };
 
 

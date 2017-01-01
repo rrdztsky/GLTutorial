@@ -121,7 +121,10 @@ void Tut::render()
 	Matrix4x4 r = Matrix4x4::rotation(time, Vec3(0.0f, 1.0f, 0.0f)); //changes the axis of rotation
 	Matrix4x4 s = Matrix4x4::scale(scale);
 	Matrix4x4 t = Matrix4x4::translation(Vec3(radius*std::cos(time), radius*std::sin(time), 0.0f));
-	Matrix4x4 world = t*r*s;
+	Matrix4x4 m = t*r*s;
+	Matrix4x4 v = camera.getView();
+	Matrix4x4 p = camera.getProjection();
+	Matrix4x4 world = p*v*m;
 	glUniformMatrix4fv(worldLocation, 1, GL_TRUE, world.get());
 	
 	glEnableVertexAttribArray(0); //enable the first slot
@@ -136,6 +139,56 @@ void Tut::render()
 void Tut::reshape(int w, int h)
 {
 	//std::cout << "reshape " << w  << " " << h << "\n";
+}
+
+void Tut::keyboard(unsigned char key, int x, int y)
+{
+	std::cout << key << " down\n";
+	switch (key)
+	{
+		case 'q':
+			
+			break;
+		default:
+			break;
+	}
+}
+
+void Tut::keyboardUp(unsigned char key, int x, int y)
+{
+	std::cout << key << " up\n";
+	switch (key)
+	{
+		case 'q':
+			break;
+		default:
+			break;
+	}
+}
+
+void Tut::motion(int x, int y)
+{
+	std::cout << x << " " << y << "\n";
+	glutWarpPointer(300, 300);
+}
+
+void Tut::mouse(int button, int state, int x, int y)
+{
+	switch (button)
+	{
+		case GLUT_RIGHT_BUTTON:
+			if (state == GLUT_DOWN)
+			{
+				glutSetCursor(GLUT_CURSOR_NONE);
+				glutWarpPointer(300, 300);
+				std::cout << "right mouse button down\n";
+			}
+			else if (state == GLUT_UP)
+			{
+				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
+				std::cout << "right mouse button up\n";
+			}
+	}
 }
 
 void Tut::tick(float dt)
