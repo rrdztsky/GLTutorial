@@ -19,6 +19,10 @@ public:
 	Camera();
 	Matrix4x4 getProjection();
 	Matrix4x4 getView();
+	void keyboard(unsigned char key, int x, int y);
+	void keyboardUp(unsigned char key, int x, int y);
+	void motion(int x, int y);
+	void mouse(int button, int state, int x, int y);
 private:
 	Vec3 position;
 	Quat rotation;
@@ -26,6 +30,9 @@ private:
 	float aspect;
 	float far;
 	float near;
+	bool track;
+	int centerX;
+	int centerY;
 };
 
 #endif /* Camera_h */

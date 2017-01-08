@@ -13,6 +13,7 @@
 		CC5BA4191DD926F40025CCFB /* Quat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA4181DD926F40025CCFB /* Quat.cpp */; };
 		CC636CC41D04C2E600AD10D8 /* Tut1.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC636CC31D04C2E600AD10D8 /* Tut1.cpp */; };
 		CC636CC71D04CA5F00AD10D8 /* Tut2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */; };
+		CC8C794D1E19AE7000C6F41A /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC8C794C1E19AE7000C6F41A /* ApplicationServices.framework */; };
 		CC94E4571D0DFAAC0017CAF8 /* Tut3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E4561D0DFAAC0017CAF8 /* Tut3.cpp */; };
 		CC94E45A1D0DFECE0017CAF8 /* Tut4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E4591D0DFECE0017CAF8 /* Tut4.cpp */; };
 		CC94E45D1D0E04530017CAF8 /* Tut5.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CC94E45C1D0E04530017CAF8 /* Tut5.cpp */; };
@@ -46,6 +47,8 @@
 		CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut2.cpp; sourceTree = "<group>"; };
 		CC636CC61D04CA5F00AD10D8 /* Tut2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tut2.h; sourceTree = "<group>"; };
 		CC636CC81D04CC5500AD10D8 /* Vec3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Vec3.h; sourceTree = "<group>"; };
+		CC8C794B1E19A16E00C6F41A /* rrgl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = rrgl.h; sourceTree = "<group>"; };
+		CC8C794C1E19AE7000C6F41A /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		CC94E4551D0DFA940017CAF8 /* Tut3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tut3.h; sourceTree = "<group>"; };
 		CC94E4561D0DFAAC0017CAF8 /* Tut3.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tut3.cpp; sourceTree = "<group>"; };
 		CC94E4581D0DFEBC0017CAF8 /* Tut4.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tut4.h; sourceTree = "<group>"; };
@@ -67,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8C794D1E19AE7000C6F41A /* ApplicationServices.framework in Frameworks */,
 				CC4808F31CA895BA00B1EBE9 /* GLUT.framework in Frameworks */,
 				CC4808F41CA895BA00B1EBE9 /* OpenGL.framework in Frameworks */,
 			);
@@ -78,6 +82,7 @@
 		CC4808DE1CA894FA00B1EBE9 = {
 			isa = PBXGroup;
 			children = (
+				CC8C794C1E19AE7000C6F41A /* ApplicationServices.framework */,
 				CC4808F11CA895BA00B1EBE9 /* GLUT.framework */,
 				CC4808F21CA895BA00B1EBE9 /* OpenGL.framework */,
 				CC4808E91CA894FA00B1EBE9 /* GLTutorial1 */,
@@ -99,6 +104,7 @@
 				CC4808EA1CA894FA00B1EBE9 /* main.cpp */,
 				CCF78DC41E187FC90041EA8A /* Camera.h */,
 				CCF78DC51E187FE10041EA8A /* Camera.cpp */,
+				CC8C794B1E19A16E00C6F41A /* rrgl.h */,
 				CC636CC81D04CC5500AD10D8 /* Vec3.h */,
 				CC636CC51D04CA5F00AD10D8 /* Tut2.cpp */,
 				CC94E4551D0DFA940017CAF8 /* Tut3.h */,
@@ -260,7 +266,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = "-Wno-deprecated-declarations";
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

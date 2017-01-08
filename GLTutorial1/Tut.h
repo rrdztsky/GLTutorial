@@ -8,9 +8,7 @@
 
 #ifndef Tut_h
 #define Tut_h
-#include <OpenGL/gl3.h>
-#define __gl_h_
-#include <GLUT/glut.h>
+#include "rrgl.h"
 #include <vector>
 #include "Vec3.h"
 #include "Camera.h"

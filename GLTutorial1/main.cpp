@@ -58,7 +58,7 @@ void reshape(int w, int h)
 
 void idle()
 {
-	static auto ta = mach_absolute_time(); //will only run the first time, ta initialized
+	static auto ta = mach_absolute_time(); //will only run the first time (called by glut), ta initialized
 	auto tb = mach_absolute_time();
 	double dt = (double)(tb - ta)*1.0e-9;
 	tut->tick((float)dt);

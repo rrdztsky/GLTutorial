@@ -12,9 +12,7 @@
 #include "Matrix4x4.h"
 #include <iostream>
 #include <cmath>
-#include <OpenGL/gl3.h>
-#define __gl_h_
-#include <GLUT/glut.h>
+#include "rrgl.h"
 
 Tut::Tut()
 : time(0.0f) //initializer list
@@ -143,52 +141,22 @@ void Tut::reshape(int w, int h)
 
 void Tut::keyboard(unsigned char key, int x, int y)
 {
-	std::cout << key << " down\n";
-	switch (key)
-	{
-		case 'q':
-			
-			break;
-		default:
-			break;
-	}
+	camera.keyboard(key, x, y);
 }
 
 void Tut::keyboardUp(unsigned char key, int x, int y)
 {
-	std::cout << key << " up\n";
-	switch (key)
-	{
-		case 'q':
-			break;
-		default:
-			break;
-	}
+	camera.keyboardUp(key, x, y);
 }
 
 void Tut::motion(int x, int y)
 {
-	std::cout << x << " " << y << "\n";
-	glutWarpPointer(300, 300);
+	camera.motion(x, y);
 }
 
 void Tut::mouse(int button, int state, int x, int y)
 {
-	switch (button)
-	{
-		case GLUT_RIGHT_BUTTON:
-			if (state == GLUT_DOWN)
-			{
-				glutSetCursor(GLUT_CURSOR_NONE);
-				glutWarpPointer(300, 300);
-				std::cout << "right mouse button down\n";
-			}
-			else if (state == GLUT_UP)
-			{
-				glutSetCursor(GLUT_CURSOR_LEFT_ARROW);
-				std::cout << "right mouse button up\n";
-			}
-	}
+	camera.mouse(button, state, x, y);
 }
 
 void Tut::tick(float dt)
