@@ -141,7 +141,15 @@ void Tut::reshape(int w, int h)
 
 void Tut::keyboard(unsigned char key, int x, int y)
 {
-	camera.keyboard(key, x, y);
+	switch (key)
+	{
+		case 'x':
+			exit(0);
+			break;
+		default:
+			break;
+	}
+	camera.keyboard(key, x, y); //will call camera if it passes switch
 }
 
 void Tut::keyboardUp(unsigned char key, int x, int y)
@@ -162,6 +170,7 @@ void Tut::mouse(int button, int state, int x, int y)
 void Tut::tick(float dt)
 {
 	//std::cout << "tick " << dt << "\n";
-	time += dt;
+	//time += dt;
+	camera.tick(dt);
 	glutPostRedisplay();
 }

@@ -16,7 +16,43 @@ public:
 	float x, y, z;
 	Vec3() : x(0.0f), y(0.0f), z(0.0f) {} //declares and defines an (automatically) inline default constructor (no .cpp needed)
 	Vec3(float x, float y, float z) : x(x), y(y), z(z) {} // second constructor; make x from x, etc
+	Vec3 &operator+=(const Vec3 &a);
+	Vec3 &operator-=(const Vec3 &a);
+	Vec3 &operator*=(float f);
+	Vec3 &operator/=(float f);
 };
+
+inline Vec3 &Vec3::operator+=(const Vec3 &a)
+{
+	x += a.x;
+	y += a.y;
+	z += a.z;
+	return *this; //dereferences 'this' with *(pointer to value) in reference context to return a reference
+}
+
+inline Vec3 &Vec3::operator-=(const Vec3 &a)
+{
+	x -= a.x;
+	y -= a.y;
+	z -= a.z;
+	return *this;
+}
+
+inline Vec3 &Vec3::operator*=(float f)
+{
+	x*=f;
+	y*=f;
+	z*=f;
+	return *this;
+}
+
+inline Vec3 &Vec3::operator/=(float f)
+{
+	x/=f;
+	y/=f;
+	z/=f;
+	return *this;
+}
 
 inline Vec3 operator+(const Vec3 &a, const Vec3 &b) //reference to a and b, will not change
 {

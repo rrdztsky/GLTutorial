@@ -13,7 +13,7 @@
 #include "rrgl.h"
 
 Camera::Camera()
-: position(Vec3(0, 0, 5))
+: position(Vec3(0, 0, 5)) //initializer list for constructor
 , rotation(Quat::quatWithAngleAxis(0.0f, Vec3(1.0f, 0.0f, 0.0f)))
 , fov(1.0f)
 , aspect(1.0f)
@@ -22,6 +22,12 @@ Camera::Camera()
 , track(false)
 , centerX(300)
 , centerY(300)
+, moveLeft(false)
+, moveRight(false)
+, moveForward(false)
+, moveBack(false)
+, moveUp(false)
+, moveDown(false)
 {
 	
 }
@@ -46,8 +52,23 @@ void Camera::keyboard(unsigned char key, int x, int y)
 	std::cout << key << " down\n";
 	switch (key)
 	{
+		case 'w':
+			moveForward = true;
+			break;
+		case 's':
+			moveBack = true;
+			break;
+		case 'a':
+			moveLeft = true;
+			break;
+		case 'd':
+			moveRight = true;
+			break;
 		case 'q':
-			exit(0);
+			moveDown = true;
+			break;
+		case 'e':
+			moveUp = true;
 			break;
 		default:
 			break;
@@ -59,7 +80,23 @@ void Camera::keyboardUp(unsigned char key, int x, int y)
 	std::cout << key << " up\n";
 	switch (key)
 	{
+		case 'w':
+			moveForward = false;
+			break;
+		case 's':
+			moveBack = false;
+			break;
+		case 'a':
+			moveLeft = false;
+			break;
+		case 'd':
+			moveRight = false;
+			break;
 		case 'q':
+			moveDown = false;
+			break;
+		case 'e':
+			moveUp = false;
 			break;
 		default:
 			break;
@@ -104,5 +141,40 @@ void Camera::mouse(int button, int state, int x, int y)
 				track = false;
 				std::cout << "right mouse button up\n";
 			}
+	}
+}
+
+void Camera::tick(float dt)
+{
+	const float speed = 1.0f;
+	if (moveForward)
+	{
+		Vec3 d(0.0f, 0.0f, -speed*dt);
+		position += rotation.rotate(d); //use camera's rotation quaterinon to convert to global space
+	}
+	if (moveBack)
+	{
+		Vec3 d(0.0f, 0.0f, speed*dt);
+		position += rotation.rotate(d);
+	}
+	if (moveLeft)
+	{
+		Vec3 d(-speed*dt, 0.0f, 0.0f);
+		position += rotation.rotate(d);
+	}
+	if (moveRight)
+	{
+		Vec3 d(speed*dt, 0.0f, 0.0f);
+		position += rotation.rotate(d);
+	}
+	if (moveUp)
+	{
+		Vec3 d(0.0f, speed*dt, 0.0f);
+		position += d; //globally move up
+	}
+	if (moveDown)
+	{
+		Vec3 d(0.0f, -speed*dt, 0.0f);
+		position += d; //globally move down
 	}
 }

@@ -23,6 +23,7 @@ public:
 	void keyboardUp(unsigned char key, int x, int y);
 	void motion(int x, int y);
 	void mouse(int button, int state, int x, int y);
+	void tick(float dt);
 private:
 	Vec3 position;
 	Quat rotation;
@@ -33,6 +34,12 @@ private:
 	bool track;
 	int centerX;
 	int centerY;
+	bool moveLeft;
+	bool moveRight;
+	bool moveForward;
+	bool moveBack;
+	bool moveUp;
+	bool moveDown;
 };
 
 #endif /* Camera_h */
